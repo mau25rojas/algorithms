@@ -3,16 +3,16 @@
 int main(int, char**) {
     std::cout << "Symtric Difference" << endl;
 
-    sym Sym{};
+    Sym sym{};
 
     // Symtric Difference
     vector<int> array1{1,2,3};
     vector<int> array2{5,2,1,4};
 
-    vector<vector<int>> inFunc = Sym.arraysToOneVector(array1);
+    vector<vector<int>> inFunc = sym.arraysToOneVector(array1, array2);
     
-    set<int> outputSet;
-    outputSet = Sym.symdiff(inFunc);
+    vector<int> outputSet;
+    outputSet = sym.symdiff(inFunc);
 
-    Sym.print(outputSet);
+    sym.print(outputSet);
 }
