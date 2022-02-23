@@ -21,22 +21,33 @@ vector<vector<int>> Sym::arraysToOneVector(vector<int>& array1,vector<int>& arra
 
 
 set<int> Sym::symDiff(const vector<vector<int>>& inputArrays){
+    // hold all numbers which repeat in the input
+    unordered_set<int> gatherAllEquals{};
     set<int> outputArray{};
 
-    if (!inputArrays.empty()){
-        // include first array als reference
-        unordered_set<int> referenceSet{};
-        
+    if (!inputArrays.empty()){       
         for (auto array : inputArrays){
+            // create a reference for compare with the next sets
+            unordered_set<int> referenceSet{};
+
             for (auto element : array){
                 // try to insert in the existing set
                 auto ret = referenceSet.insert(element);
+                // if it not allowed, it means it was present in the set
+                if(ret.second==false) gatherAllEquals.insert(element);
+            }
+        }
 
-                // if it not allowed, it means it is part of the sym difference set
-                if(ret.second==false) outputArray.insert(element);
-
+        for (auto array : inputArrays){
+            for (auto element : array){
+                // compare again all elements with our found ones, insert the ones which are not found
+                if (gatherAllEquals.find(element) != gatherAllEquals.end()) {
+                } else {
+                    outputArray.insert(element);
+                }
             }
         }
     }
+
     return outputArray;
 }
