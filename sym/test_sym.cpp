@@ -13,6 +13,7 @@ TEST(TestSymmetricDifference, BasicFunction) {
 
   vector<vector<int>> input = symTest.arraysToOneVector(array1, array2);
   set<int> result = symTest.symDiff(input);
+  symTest.print(result);
 
   EXPECT_EQ(result.size(), expected.size());
   // for (int i = 0; i < result.size(); ++i) {

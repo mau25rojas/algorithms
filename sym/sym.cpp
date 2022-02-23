@@ -2,6 +2,7 @@
 
 void Sym::print(set<int> const &s)
 {
+    cout << "sym set: ";
     copy(s.begin(),
             s.end(),
             ostream_iterator<int>(cout, " "));
@@ -24,10 +25,10 @@ set<int> Sym::symDiff(const vector<vector<int>>& inputArrays){
 
     if (!inputArrays.empty()){
         // include first array als reference
-        unordered_set<int> referenceSet(std::begin(inputArrays[0]), std::end(inputArrays[0]));
+        unordered_set<int> referenceSet{};
         
-        for (int i=1; i<inputArrays.size(); i++){
-            for (auto element : inputArrays[i]){
+        for (auto array : inputArrays){
+            for (auto element : array){
                 // try to insert in the existing set
                 auto ret = referenceSet.insert(element);
 
