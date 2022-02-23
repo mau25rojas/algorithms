@@ -2,8 +2,6 @@ set(BINARY ${CMAKE_PROJECT_NAME}_test)
 
 file(GLOB_RECURSE TEST_SOURCES LIST_DIRECTORIES false *.hpp *.cpp)
 
-include_directories(include)
-
 set(SOURCES ${TEST_SOURCES})
 
 add_executable(${BINARY} ${TEST_SOURCES})

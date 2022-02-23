@@ -11,10 +11,10 @@ TEST(TestSymmetricDifference, BasicFunction) {
   vector<int> array1{1, 2, 3}; vector<int> array2{5, 2, 1, 4};
   vector<int> expected{3,4,5};
 
-  // vector<vector<int>> input = symTest.arraysToOneVector(array1, array2);
-  // vector<int> result = symTest.symdiff(input);
+  vector<vector<int>> input = symTest.arraysToOneVector(array1, array2);
+  set<int> result = symTest.symDiff(input);
 
-  // EXPECT_EQ(result.size(), expected.size());
+  EXPECT_EQ(result.size(), expected.size());
   // for (int i = 0; i < result.size(); ++i) {
   //  EXPECT_EQ(result[i],expected[i]) << "Vectors x and y differ at index " << i;
   // }
