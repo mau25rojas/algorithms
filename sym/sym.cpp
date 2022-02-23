@@ -26,10 +26,10 @@ set<int> Sym::symDiff(const vector<vector<int>>& inputArrays){
     set<int> outputArray{};
 
     if (!inputArrays.empty()){       
+        // create a reference for compare with the next sets
+        unordered_set<int> referenceSet{};
+        
         for (auto array : inputArrays){
-            // create a reference for compare with the next sets
-            unordered_set<int> referenceSet{};
-
             for (auto element : array){
                 // try to insert in the existing set
                 auto ret = referenceSet.insert(element);
