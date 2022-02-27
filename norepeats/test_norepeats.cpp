@@ -45,6 +45,102 @@ TEST(TestNoRepeatsPlease, BasicFunction) {
 }
 
 
+// permAlone("aaa") should return 0.
+TEST(TestNoRepeatsPlease_AllEquals0, BasicFunction) {
+
+  NoRepeats nrTest;
+  string s{"aaa"};
+
+  nrTest.addInput(s);
+  int result = nrTest.permAlone();
+
+  EXPECT_EQ(result, 0);
+}
+
+// permAlone("aabb") should return 8.
+TEST(TestNoRepeatsPlease_RepeatTwoTwice, BasicFunction) {
+
+  NoRepeats nrTest;
+  string s{"aabb"};
+
+  nrTest.addInput(s);
+  int result = nrTest.permAlone();
+
+  EXPECT_EQ(result, 8);
+}
+
+// permAlone("abcdefa") should return 3600.
+TEST(TestNoRepeatsPlease_AllDifferenteButOne, BasicFunction) {
+
+  NoRepeats nrTest;
+  string s{"abcdefa"};
+
+  nrTest.addInput(s);
+  int result = nrTest.permAlone();
+
+  EXPECT_EQ(result, 3600);
+}
+
+// permAlone("abfdefa") should return 2640.
+TEST(TestNoRepeatsPlease_AllDifferenteButTwo, BasicFunction) {
+
+  NoRepeats nrTest;
+  string s{"abfdefa"};
+
+  nrTest.addInput(s);
+  int result = nrTest.permAlone();
+
+  EXPECT_EQ(result, 2640);
+}
+
+// permAlone("zzzzzzzz") should return 0.
+TEST(TestNoRepeatsPlease_AllEquals, BasicFunction) {
+
+  NoRepeats nrTest;
+  string s{"zzzzzzzz"};
+
+  nrTest.addInput(s);
+  int result = nrTest.permAlone();
+
+  EXPECT_EQ(result, 0);
+}
+
+// permAlone("a") should return 1.
+TEST(TestNoRepeatsPlease_OnlyOneChar, BasicFunction) {
+
+  NoRepeats nrTest;
+  string s{"a"};
+
+  nrTest.addInput(s);
+  int result = nrTest.permAlone();
+
+  EXPECT_EQ(result, 1);
+}
+
+// permAlone("aaab") should return 0.
+TEST(TestNoRepeatsPlease_ThreeEqualsOneDiff, BasicFunction) {
+
+  NoRepeats nrTest;
+  string s{"aaab"};
+
+  nrTest.addInput(s);
+  int result = nrTest.permAlone();
+
+  EXPECT_EQ(result, 0);
+}
+
+// permAlone("aaabb") should return 12.
+TEST(TestNoRepeatsPlease_ThreeEqualsTwoDiff, BasicFunction) {
+
+  NoRepeats nrTest;
+  string s{"aaabb"};
+
+  nrTest.addInput(s);
+  int result = nrTest.permAlone();
+
+  EXPECT_EQ(result, 12);
+}
+
 int main(int argc, char **argv) {
     testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();

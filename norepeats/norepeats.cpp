@@ -2,20 +2,28 @@
 
 void NoRepeats::print(const string& name, const vector<string>& s)
 {
-    cout << name << ": ";
-    copy(s.begin(),
-            s.end(),
-            ostream_iterator<string>(cout, " "));
-    cout << endl;
+    if(s.size() > 12){
+        cout << "too long, not printing" << endl;
+    } else {
+        cout << name << ": ";
+        copy(s.begin(),
+                s.end(),
+                ostream_iterator<string>(cout, " "));
+        cout << endl;
+    }
 }
 
 void NoRepeats::print(const string& name, const vector<int>& s)
 {
-    cout << name << ": ";
-    copy(s.begin(),
-            s.end(),
-            ostream_iterator<int>(cout, " "));
-    cout << endl;
+    if(s.size() > 12){
+        cout << "too long, not printing" << endl;
+    } else {
+        cout << name << ": ";
+        copy(s.begin(),
+                s.end(),
+                ostream_iterator<int>(cout, " "));
+        cout << endl;
+    }
 }
 
 void NoRepeats::print(const string& name, const vector<vector<int>>& s)
