@@ -10,6 +10,9 @@
 using namespace std;
 
 // Class for calculating the symetric difference between arrays
+// There is already a sym difference alg...
+// it=std::set_symmetric_difference (first, first+5, second, second+5, v.begin());
+// ups...
 class Sym
 {   
     vector<set<int>> m_inputArrays{};
