@@ -5,8 +5,16 @@ int main(int, char**) {
 
     NoRepeats nrTest{};
 
-    string mystring{"aab"};
+    vector<int> permute{1,1,3};
 
-    nrTest.permAlone(mystring);
+    std::sort (permute.begin(),permute.end());
+
+    vector<int> outputPermutations{};
+    do {
+        for (int i = 0; i < permute.size(); i++) {
+        cout << permute[i] << "  ";
+        }
+        cout << endl;
+    } while ( std::next_permutation(permute.begin(),permute.end()));
 
 }
