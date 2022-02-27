@@ -1,21 +1,50 @@
 #include <gtest/gtest.h>
 #include "norepeats.hpp"
 
-// permAlone("aab") should return a number.
-// permAlone("aab") should return 2.
-TEST(TestNoRepeatsPlease, BasicFunction) {
+// test translation working
+TEST(TestNoRepeatsPlease, Translation) {
 
-  NoRepeats nrTest;
-  string input{"aab"};
+    NoRepeats nrTest{};
 
-  int result = nrTest.permAlone(input);
+    string inputString{"abc"};
 
-  EXPECT_EQ(typeid(int), typeid(result));
-  EXPECT_EQ(result, 2);
+    nrTest.addInput(inputString);
+    /* internal dict will be
+    dict: 
+    0: a
+    1: b
+    2: c
+    */
+
+    vector<int> v1{1,2,0}; vector<int> v2{0,2,0}; vector<int> v3{1,1,1};
+    vector<vector<int>> exampleVec{};
+    exampleVec.push_back(v1);
+    exampleVec.push_back(v2);
+    exampleVec.push_back(v3);
+
+    vector<string> expected{"bca","aca", "bbb"};
+
+    auto result = nrTest.translateBackToString(exampleVec);
+
+  EXPECT_EQ(result.size(), 3);
+  EXPECT_EQ(result, expected);
 }
 
+// permAlone("aab") should return a number.
+// permAlone("aab") should return 2.
+// TEST(TestNoRepeatsPlease, BasicFunction) {
 
-// int main(int argc, char **argv) {
-//     testing::InitGoogleTest(&argc, argv);
-//     return RUN_ALL_TESTS();
+//   NoRepeats nrTest;
+//   string input{"aab"};
+
+//   int result = nrTest.permAlone(input);
+
+//   EXPECT_EQ(typeid(int), typeid(result));
+//   EXPECT_EQ(result, 2);
 // }
+
+
+int main(int argc, char **argv) {
+    testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
+}

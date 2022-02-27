@@ -1,20 +1,19 @@
 #include "norepeats.hpp"
 
-int main(int, char**) {
-    std::cout << "No Repeats Please" << endl;
+// int main(int, char**) {
+//     std::cout << "No Repeats Please" << endl;
 
-    NoRepeats nrTest{};
+//     NoRepeats nrTest{};
 
-    vector<int> permute{1,1,3};
+//     string inputString{"abc"};
 
-    std::sort (permute.begin(),permute.end());
+//     nrTest.addInput(inputString);
 
-    vector<int> outputPermutations{};
-    do {
-        for (int i = 0; i < permute.size(); i++) {
-        cout << permute[i] << "  ";
-        }
-        cout << endl;
-    } while ( std::next_permutation(permute.begin(),permute.end()));
+//     vector<int> v1{1,2,0};
+//     vector<int> v2{0,2,0};
+//     vector<vector<int>> exampleVec{};
+//     exampleVec.push_back(v1);
+//     exampleVec.push_back(v2);
 
-}
+//     auto temp = nrTest.translateBackToString(exampleVec);
+// }
