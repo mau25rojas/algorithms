@@ -42,9 +42,9 @@ void NoRepeats::print(const string& name, const map<int,char>& s)
 }
 
 
-void NoRepeats::addInput(const string& input)
+void NoRepeats::addInput(const string& s)
 {
-    m_inputString = input;
+    m_inputString = s;
     m_internalPermutationVector.clear();
     // create dict with elements
     for(int i=0; i<m_inputString.size(); i++){
@@ -74,15 +74,13 @@ vector<string> NoRepeats::translateBackToString(const vector<vector<int>>& input
 
 int NoRepeats::permAlone(){
 
-    vector<vector<int>> posiblePermutations{};
-    vector<int> permutationsWithoutRepeatedConsecutives{};
+    auto posiblePermutations = findPossiblePermutations();
 
-    posiblePermutations = findPossiblePermutations();
+    auto translatedPermutations = translateBackToString(posiblePermutations);
 
+    auto permutationsWithoutRepeatedConsecutives = extractStringsWithoutRepeatedConsecutives(translatedPermutations);
 
-    // print("permutations", posiblePermutations);
-    // permutationsWithoutRepeatedConsecutives = extractStringsWithoutRepeatedConsecutives(posiblePermutations);
-    // print("permutationsWithoutRepeatedConsecutives",permutationsWithoutRepeatedConsecutives);
+    print("permutationsWithoutRepeatedConsecutives",permutationsWithoutRepeatedConsecutives);
 
     return permutationsWithoutRepeatedConsecutives.size();
 }

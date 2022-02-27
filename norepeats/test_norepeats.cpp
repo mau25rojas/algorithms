@@ -32,16 +32,17 @@ TEST(TestNoRepeatsPlease, Translation) {
 
 // permAlone("aab") should return a number.
 // permAlone("aab") should return 2.
-// TEST(TestNoRepeatsPlease, BasicFunction) {
+TEST(TestNoRepeatsPlease, BasicFunction) {
 
-//   NoRepeats nrTest;
-//   string input{"aab"};
+  NoRepeats nrTest;
+  string s{"aab"};
 
-//   int result = nrTest.permAlone(input);
+  nrTest.addInput(s);
+  int result = nrTest.permAlone();
 
-//   EXPECT_EQ(typeid(int), typeid(result));
-//   EXPECT_EQ(result, 2);
-// }
+  EXPECT_EQ(typeid(int), typeid(result));
+  EXPECT_EQ(result, 2);
+}
 
 
 int main(int argc, char **argv) {
