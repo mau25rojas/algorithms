@@ -1,18 +1,19 @@
-#include "sym.hpp"
+#include "norepeats.hpp"
 
-// int main(int, char**) {
-//     std::cout << "Symtric Difference" << endl;
+int main(int, char**) {
+    std::cout << "No Repeats Please" << endl;
 
-//     Sym sym{};
+    NoRepeats nrTest{};
 
-//     // Symtric Difference
-//     vector<int> array1{1,2,3};
-//     vector<int> array2{5,2,1,4};
+    string mystring{"abc"};
 
-//     vector<vector<int>> inFunc = sym.arraysToOneVector(array1, array2);
-    
-//     vector<int> outputSet;
-//     outputSet = sym.symdiff(inFunc);
+    std::sort (mystring.begin(),mystring.end());
 
-//     sym.print(outputSet);
-// }
+    std::cout << "The 3! possible permutations with 3 elements:\n";
+    do {
+        std::cout << mystring[0] << ' ' << mystring[1] << ' ' << mystring[2] << '\n';
+    } while ( std::next_permutation(mystring.begin(),mystring.end()));
+
+    std::cout << "After loop: " << mystring[0] << ' ' << mystring[1] << ' ' << mystring[2] << '\n';
+
+}
