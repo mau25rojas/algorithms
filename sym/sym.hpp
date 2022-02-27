@@ -12,6 +12,9 @@ using namespace std;
 // Class for calculating the symetric difference between arrays
 class Sym
 {   
+    vector<set<int>> m_inputArrays{};
+    set<int> m_intermediateSymDiff{};
+
     public:
 
     void print(set<int> const &s);
@@ -19,5 +22,9 @@ class Sym
     // how to convert some input arrays to a vector of vectors that I need for my func sym
     vector<vector<int>> arraysToOneVector(vector<int>& array1, vector<int>& array2);
 
-    set<int> symDiff(const vector<vector<int>>& inputArrays);
+    void addInputArray(vector<int>& array);
+
+    set<int> symDiff();
+
+    set<int> symDiffTwoSets(set<int>& set1, set<int>& set2);
 };
