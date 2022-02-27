@@ -3,6 +3,7 @@
 #include <iostream>
 #include <algorithm>
 #include <iterator>
+#include <vector>
 
 using namespace std;
 
@@ -11,7 +12,11 @@ class NoRepeats
 {   
     public:
 
-    // void print(set<int> const &s);
+    void print(const vector<string>& s);
 
-    int permAlone(string input);
+    int permAlone(const string& input);
+
+    vector<string> findPossiblePermutations(string& inputToPermutate);
+
+    vector<string> extractStringsWithoutRepeatedConsecutives(const vector<string>& inputWithPermutations);
 };

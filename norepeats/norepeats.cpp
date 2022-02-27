@@ -1,16 +1,54 @@
 #include "norepeats.hpp"
 
-// void NoRepeats::print(set<int> const &s)
-// {
-//     cout << "sym set: ";
-//     copy(s.begin(),
-//             s.end(),
-//             ostream_iterator<int>(cout, " "));
-//     cout << endl;
-// }
+void NoRepeats::print(const vector<string>& s)
+{
+    cout << "permutations: ";
+    copy(s.begin(),
+            s.end(),
+            ostream_iterator<string>(cout, " "));
+    cout << endl;
+}
 
 
-int NoRepeats::permAlone(string input){
+int NoRepeats::permAlone(const string& input){
 
-    return 0;
+    string copiedInput(input);
+    vector<string> permutations{};
+    vector<string> permutationsWithoutRepeatedConsecutives{};
+
+    permutations = findPossiblePermutations(copiedInput);
+    permutationsWithoutRepeatedConsecutives = extractStringsWithoutRepeatedConsecutives(permutations);
+    print(permutationsWithoutRepeatedConsecutives);
+
+
+    return permutationsWithoutRepeatedConsecutives.size();
+}
+
+vector<string> NoRepeats::findPossiblePermutations(string& inputToPermutate){
+
+    // we need to sort first, because it searches the next possible
+    std::sort (inputToPermutate.begin(),inputToPermutate.end());
+
+    vector<string> outputPermutations{};
+    do {
+        outputPermutations.push_back(inputToPermutate);
+    } while ( std::next_permutation(inputToPermutate.begin(),inputToPermutate.end()));
+
+    return outputPermutations;
+}
+
+vector<string> NoRepeats::extractStringsWithoutRepeatedConsecutives(const vector<string>& inputWithPermutations){
+    
+    vector<string> outputWithoutRepeatedConsecutives{};
+    
+    for(const auto& one_string : inputWithPermutations){
+        auto it = one_string.begin();
+        // using default comparison:
+        it = std::adjacent_find (one_string.begin(), one_string.end());
+        if (it==one_string.end()){ // if we don't found some adjacent letters, add it to the output
+            outputWithoutRepeatedConsecutives.push_back(one_string);
+        }
+    }
+
+    return outputWithoutRepeatedConsecutives;
 }
