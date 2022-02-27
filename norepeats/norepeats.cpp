@@ -1,8 +1,8 @@
 #include "norepeats.hpp"
 
-void NoRepeats::print(const vector<string>& s)
+void NoRepeats::print(const string& name, const vector<string>& s)
 {
-    cout << "permutations: ";
+    cout << name << ": ";
     copy(s.begin(),
             s.end(),
             ostream_iterator<string>(cout, " "));
@@ -17,9 +17,9 @@ int NoRepeats::permAlone(const string& input){
     vector<string> permutationsWithoutRepeatedConsecutives{};
 
     permutations = findPossiblePermutations(copiedInput);
+    print("permutations", permutations);
     permutationsWithoutRepeatedConsecutives = extractStringsWithoutRepeatedConsecutives(permutations);
-    print(permutationsWithoutRepeatedConsecutives);
-
+    print("permutationsWithoutRepeatedConsecutives",permutationsWithoutRepeatedConsecutives);
 
     return permutationsWithoutRepeatedConsecutives.size();
 }

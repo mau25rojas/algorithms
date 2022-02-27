@@ -1,12 +1,12 @@
 #include "norepeats.hpp"
 
-// int main(int, char**) {
-//     std::cout << "No Repeats Please" << endl;
+int main(int, char**) {
+    std::cout << "No Repeats Please" << endl;
 
-//     NoRepeats nrTest{};
+    NoRepeats nrTest{};
 
-//     string mystring{"abc"};
+    string mystring{"aab"};
 
-//     nrTest.permAlone(mystring);
+    nrTest.permAlone(mystring);
 
-// }
+}
