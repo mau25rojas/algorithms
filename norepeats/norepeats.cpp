@@ -1,4 +1,5 @@
 #include "norepeats.hpp"
+#include <regex>
 
 void NoRepeats::print(const string& name, const vector<string>& s)
 {
@@ -64,33 +65,33 @@ void NoRepeats::addInput(const string& s)
 
 vector<string> NoRepeats::translateBackToString(const vector<vector<int>>& input)
 {
-    m_posiblePermutationsFromInput.clear();
-    m_posiblePermutationsFromInput.resize(input.size());
+    m_possiblePermutationsFromInput.clear();
+    m_possiblePermutationsFromInput.resize(input.size());
 
     int i{0};
     for(const auto& element : input){
         for(const auto& number : element){
             auto it = m_internalDict.find(number);
             if (it != m_internalDict.end()){
-                m_posiblePermutationsFromInput[i].push_back(it->second);
+                m_possiblePermutationsFromInput[i].push_back(it->second);
             } 
         }
         i++;
     }
-    return m_posiblePermutationsFromInput;
+    return m_possiblePermutationsFromInput;
 }
 
 int NoRepeats::permAlone(){
 
-    auto posiblePermutations = findPossiblePermutations();
+    auto possiblePermutations = findPossiblePermutations();
 
-    auto translatedPermutations = translateBackToString(posiblePermutations);
+    auto translatedPermutations = translateBackToString(possiblePermutations);
 
-    auto permutationsWithoutRepeatedConsecutives = extractStringsWithoutRepeatedConsecutives(translatedPermutations);
+    auto permutationsWithoutRepeatedConsecutive = extractStringsWithoutRepeatedConsecutive(translatedPermutations);
 
-    print("permutationsWithoutRepeatedConsecutives",permutationsWithoutRepeatedConsecutives);
+    print("permutationsWithoutRepeatedConsecutive",permutationsWithoutRepeatedConsecutive);
 
-    return permutationsWithoutRepeatedConsecutives.size();
+    return permutationsWithoutRepeatedConsecutive.size();
 }
 
 vector<vector<int>> NoRepeats::findPossiblePermutations(){
@@ -112,18 +113,64 @@ vector<vector<int>> NoRepeats::findPossiblePermutations(){
     }
 }
 
-vector<string> NoRepeats::extractStringsWithoutRepeatedConsecutives(const vector<string>& inputWithPermutations){
+vector<string> NoRepeats::extractStringsWithoutRepeatedConsecutive(const vector<string>& inputWithPermutations){
     
-    vector<string> outputWithoutRepeatedConsecutives{};
+    vector<string> outputWithoutRepeatedConsecutive{};
     
     for(const auto& one_string : inputWithPermutations){
         auto it = one_string.begin();
         // using default comparison:
         it = std::adjacent_find (one_string.begin(), one_string.end());
         if (it==one_string.end()){ // if we don't found some adjacent letters, add it to the output
-            outputWithoutRepeatedConsecutives.push_back(one_string);
+            outputWithoutRepeatedConsecutive.push_back(one_string);
         }
     }
 
-    return outputWithoutRepeatedConsecutives;
+    return outputWithoutRepeatedConsecutive;
+}
+
+int NoRepeats::permAlone2(const string& input) {
+  // Create a regex to match repeated consecutive characters.
+  auto regex_rule = regex("/(.)\1+/");
+
+  // Return 0 if str contains same character.
+  if (regex_match(input, regex_rule) != false /*&& str.match(regex)[0] === str*/) return 0;
+
+  string arr = input;
+  vector<string> permutations{};
+
+  // Function to swap variables' content.
+  auto swap = [&arr](int index1, int index2) {
+    auto tmp = arr[index1];
+    arr[index1] = arr[index2];
+    arr[index2] = tmp;
+  };
+
+  // Generate arrays of permutations using the algorithm.
+  std::function<void(int)> generate;
+  generate = [&](int j) {
+    if (j == 1) {
+      // Make sure to join the characters as we create  the permutation arrays
+      permutations.push_back(arr);
+    } else {
+      for (auto i = 0; i != j; ++i) {
+        generate(j - 1);
+        swap(j % 2 ? 0 : i, j - 1);
+      }
+    }
+  };
+
+  generate(arr.size());
+
+  // Filter the array of repeated permutations.
+  auto filtered = [&](string s) {
+    return !regex_match(s, regex_rule);
+  };
+
+  std::remove_if(permutations.begin(), permutations.end(), filtered);
+
+  print("permAlone2 permutation+filtering output", permutations);
+
+  // Return how many have no repetitions.
+  return permutations.size();
 }

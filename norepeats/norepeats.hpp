@@ -21,7 +21,7 @@ class NoRepeats
         string m_inputString{};
         map<int,char> m_internalDict{};
         vector<int> m_internalPermutationVector{};
-        vector<string> m_posiblePermutationsFromInput{};
+        vector<string> m_possiblePermutationsFromInput{};
 
     public:
 
@@ -36,12 +36,18 @@ class NoRepeats
     // Find permutations of internal vector of int m_internalPermutationVector
     vector<vector<int>> findPossiblePermutations();
 
-    // get all the strings which do not have repeated consecutives letters
-    vector<string> extractStringsWithoutRepeatedConsecutives(const vector<string>& inputWithPermutations);
+    // get all the strings which do not have repeated consecutive letters
+    vector<string> extractStringsWithoutRepeatedConsecutive(const vector<string>& inputWithPermutations);
 
     // add an string as an input to the object. Will be translate to a dict, which is used for the permutation algorithm
     void addInput(const string& input);
 
     // after converting the input string to numbers and then permute, we use this function for translate back
     vector<string> translateBackToString(const vector<vector<int>>& input);
+
+
+    // Solution from the book
+    int permAlone2(const string& input);
+
+
 };
