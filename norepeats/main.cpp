@@ -10,4 +10,6 @@ int main(int, char**) {
     auto result = nrTest.permAlone2(inputString);
 
     cout << "result for " << inputString << ": " << result << endl;
+
+    return 0;
 }
